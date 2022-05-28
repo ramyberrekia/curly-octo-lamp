@@ -1,6 +1,6 @@
 from django.db import models
 from django.contrib.auth import get_user_model
-
+from places.models import Place
 
 class Authorable(models.Model):
     author = models.ForeignKey(get_user_model(),on_delete=models.CASCADE)
@@ -38,11 +38,11 @@ class Contentable(models.Model):
     class Meta:
         abstract = True
 
-# class Placeable(models.Model):
-#     place = models.ForeignKey(Place, on_delete=models.CASCADE)
+class Placeable(models.Model):
+    place = models.ForeignKey(Place, on_delete=models.CASCADE)
 
-#     class Meta:
-#         abstract = True
+    class Meta:
+        abstract = True
 
 class Addressable(models.Model):
     address = models.CharField(max_length=100)
