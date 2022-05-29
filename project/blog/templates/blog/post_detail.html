@@ -1,0 +1,98 @@
+{% extends 'base.html' %}
+{% load static%}
+
+{% block content %}
+<div class="hero-wrap js-fullheight" style="background-image: url({% static 'images/bg_4.jpg'%});">
+    <div class="overlay"></div>
+    <div class="container">
+      <div class="row no-gutters slider-text js-fullheight align-items-center justify-content-center" data-scrollax-parent="true">
+        <div class="col-md-9 ftco-animate text-center" data-scrollax=" properties: { translateY: '70%' }">
+          <p class="breadcrumbs" data-scrollax="properties: { translateY: '30%', opacity: 1.6 }"><span class="mr-2"><a href="index.html">Home</a></span> <span class="mr-2"><a href="blog.html">Blog</a></span> <span>Blog Single</span></p>
+          <h1 class="mb-3 bread" data-scrollax="properties: { translateY: '30%', opacity: 1.6 }">Tips &amp; Articles</h1>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+  <section class="ftco-section ftco-degree-bg">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-8 ftco-animate">
+          <h2 class="mb-3">{{object.title}}</h2>
+            {{object.content|safe}}
+          <div class="tag-widget post-tag-container mb-5 mt-5">
+            <div class="tagcloud">
+                
+                {% for tag in object.tags.all %}
+                    
+                <a href="{% url 'blog:posts_tag_list' tag.slug%}" class="tag-cloud-link">{{tag}}</a>
+                {% endfor %}
+                    
+              
+            </div>
+          </div>
+          
+          <div class="about-author d-flex p-5 bg-light">
+            <div class="bio align-self-md-center mr-5">
+              <img src="images/person_1.jpg" alt="Image placeholder" class="img-fluid mb-4">
+            </div>
+            <div class="desc align-self-md-center">
+              <h3>{{object.author.first_name}} {{object.author.last_name}}</h3>
+              {% comment %} <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ducimus itaque, autem necessitatibus voluptate quod mollitia delectus aut, sunt placeat nam vero culpa sapiente consectetur similique, inventore eos fugit cupiditate numquam!</p> {% endcomment %}
+            </div>
+          </div>
+
+
+      
+
+        </div> <!-- .col-md-8 -->
+        <div class="col-md-4 sidebar ftco-animate">
+
+          
+
+          <div class="sidebar-box ftco-animate">
+            <h3>Recent Blog</h3>
+            {% for r_post in recent_posts %}
+            {% if r_post == object %}
+            {%else%}
+            <div class="block-21 mb-4 d-flex">
+              <a class="blog-img mr-4" style="background-image: url({{r_post.get_img_url}});"></a>
+              <div class="text">
+                <h3 class="heading"><a href="{% url 'blog:posts_detail' r_post.slug%}">{{r_post.title}}</a></h3>
+                <div class="meta">
+                  <div><a href="#"><span class="icon-calendar"></span> {{post.created_at|date:'F j, Y'}}</a></div>
+                  <div><a href="#"><span class="icon-person"></span> {{post.author.username}}</a></div>
+                  {% comment %} <div><a href="#"><span class="icon-chat"></span> 19</a></div> {% endcomment %}
+                </div>
+              </div>
+            </div>
+            
+            {% endif %}
+            {% endfor %}
+          </div>
+
+          <div class="sidebar-box ftco-animate">
+            <h3>Tag Cloud</h3>
+            <div class="tagcloud">
+              
+              {% for tag in tags %}
+                
+              
+              <a href="{% url 'blog:posts_tag_list' tag.slug%}" class="tag-cloud-link">{{tag}}</a>
+              {% endfor %}
+            </div>
+          </div>
+
+          <div class="sidebar-box ftco-animate">
+            <h3>Paragraph</h3>
+            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ducimus itaque, autem necessitatibus voluptate quod mollitia delectus aut, sunt placeat nam vero culpa sapiente consectetur similique, inventore eos fugit cupiditate numquam!</p>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section> <!-- .section -->
+
+  
+{% endblock %}

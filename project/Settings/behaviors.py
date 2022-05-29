@@ -15,7 +15,7 @@ class Slugable(models.Model):
         abstract = True
 
 class Titleable(models.Model):
-    title = models.CharField(max_length=25)
+    title = models.CharField(max_length=25, unique=True, primary_key=True)
 
     class Meta:
         abstract = True
