@@ -10,5 +10,8 @@ class PostManager(models.Manager):
         return self.filter(Q(author__username=username))
 
     def recent_posts(self, post):
-        tag = choice(post.tags.all())
-        return self.filter(tags__name__in=[tag])[:3]
+        if post.tags.all().exists():
+            tag = choice(post.tags.all())
+            return self.filter(tags__name__in=[tag])[:3]
+        else:
+            return self.none()

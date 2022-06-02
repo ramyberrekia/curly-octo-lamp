@@ -39,10 +39,12 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
 
     #apps 
+    'accounts',
     'Settings',
     'about',
     'blog',
     'restaurants',
+    'organisations',
     'hotels',
     'places',
     'tours',
@@ -55,6 +57,7 @@ INSTALLED_APPS = [
     'crispy_forms',
 ]
 
+# AUTH_USER_MODEL = 'accounts.User'
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
@@ -87,6 +90,7 @@ TEMPLATES = [
 WSGI_APPLICATION = 'project.wsgi.application'
 
 
+# AUTH_USER_MODEL = 'accounts.User'
 # Database
 # https://docs.djangoproject.com/en/4.0/ref/settings/#databases
 
@@ -146,3 +150,20 @@ MEDIA_ROOT = BASE_DIR/'media'
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 CRISPY_TEMPLATE_PACK = 'bootstrap4'
+LOGIN_REDIRECT_URL = 'blog:posts_list'
+
+
+# # Email Settings 
+
+
+
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_PORT = 587
+EMAIL_HOST_USER = 'mcpedz62@gmail.com'
+EMAIL_HOST_PASSWORD = 'zphrwzponnnlbjio'
+EMAIL_USE_TLS = True
+EMAIL_USE_SSL = False
+
+
+# from django.core.mail

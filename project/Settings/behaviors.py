@@ -33,7 +33,7 @@ class Descriptionable(models.Model):
         abstract = True
 
 class Contentable(models.Model):
-    context = models.TextField(max_length=25000)
+    content = models.TextField(max_length=11577000)
 
     class Meta:
         abstract = True

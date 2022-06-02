@@ -1,0 +1,9 @@
+{% autoescape off %}
+
+Hello {{user.username}}
+
+Unfortunally your organisation have been declided
+
+{{protocol}}://{{domain}}/{% url "hotels:hotels_list"%}
+- the www.{{domain}}.com team
+{% endautoescape %}

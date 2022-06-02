@@ -1,0 +1,10 @@
+{% autoescape off %}
+
+Hello {{user.username}}
+
+Your organisation have been approved, Now you can post hotels, restaurants and tours' programs
+and please be respectful to the site's policy 
+
+{{protocol}}://{{domain}}/{% url "hotels:hotels_list"%}
+- the www.{{domain}}.com team
+{% endautoescape %}

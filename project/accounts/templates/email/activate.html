@@ -1,0 +1,9 @@
+{% autoescape off %}
+
+Hello there 
+
+We sent you this email in order to let you activate your account and login
+
+Activate your account here: {{protocol}}://{{domain}}{% url "activate" uidb64=uidb64 token=token%}
+                                            {% comment %} {{domain}}{% url 'activate' uidb64=uid token=token %} {% endcomment %}
+{% endautoescape %}

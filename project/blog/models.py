@@ -28,11 +28,11 @@ class Post(Authorable, Slugable, Timingable, models.Model):
     def __str__(self):
         return self.title
 
-    def get_img_url(self):
-        return self.display_pic.url
-
     def get_absolute_url(self):
         return reverse('blog:posts_detail', kwargs={'slug':self.slug})
+
+    def get_img_url(self):
+        return self.display_pic.url
 
 def pre_save_settings(sender, instance, *args, **kwargs):
     instance.slug = slugify(instance.title)
